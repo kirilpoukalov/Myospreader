@@ -1,3 +1,4 @@
+library(rstatix)
 df<-data.frame(Dystrophin_data) 
 Fibers_list<-c(x1=c(unique(df$Fiber)))
 treatment<-c()
@@ -16,7 +17,7 @@ for (i in Fibers_list) {
   fibers<-append(fibers, i)
 }
 data<-data.frame(percent,treatment,fibers)
-t.test(data$percent[data$treatment=="WT"],data$percent[data$treatment=="PBS"])
+games_howell_test(data, formula=percent~treatment, conf.level = 0.95, detailed = FALSE)
 
 library(ggplot2)
 library(forcats)
